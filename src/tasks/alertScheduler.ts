@@ -18,11 +18,15 @@ const checkAlerts = (
           response[0] / cursor.price < 1.05
         ) {
           await client.channels
-            .fetch(envConfig['ALERT_CHANNEL_ID'])
+            // .fetch(envConfig['ALERT_CHANNEL_ID'])
+            .fetch('804528418821636116')
             .then((channel) => {
+              console.log(cursor.ping);
+              const messagePing =
+                cursor.ping === 'self' ? cursor.author : '@everyone';
               // @ts-ignore
               channel.send(
-                `ALERT ${cursor.author}: ${cursor.ticker} has reached ${cursor.price}. This alert will now be deleted, if you wish to be alerted again, please create a new alert.`
+                `ALERT ${messagePing}: ${cursor.ticker} has reached ${cursor.price}. This alert will now be deleted, if you wish to be alerted again, please create a new alert.`
               );
               deleteAlert(cursor._id)
                 .then((success) => {

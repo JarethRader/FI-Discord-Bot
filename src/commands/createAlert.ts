@@ -4,21 +4,39 @@ const buildCreateAlert = (
   createAlertHelper: (
     ticker: string,
     price: string,
-    author: string
-  ) => Promise<any>
+    currentPrice: string,
+    author: string,
+    ping: AlertPing
+  ) => Promise<any>,
+  getCurrentStock: (ticker: string) => Promise<any>
 ) => {
   const createAlert = {
     name: 'create-alert',
     description:
-      'Create a new alert for if a stock reachs a certain price. Alerts only currently work for traditional stocks.',
+      'Create a new alert for if a stock reachs a certain price. Optionally can choose to only alert youself, alerts will metion @everyone by default if this option is not given. Alerts only currently work for traditional stocks.',
     args: true,
-    usage: '<stock symbol> <price>',
+    usage: '<stock symbol> <price> <me | everyone (optional)>',
     cooldown: '15',
     execute: (message: Discord.Message, args: string[]) => {
-      createAlertHelper(args[0], args[1], `<@${message.author.id}>`);
-      message.channel.send(
-        `Created a new alert for ${args[0]} if it reaches $${args[1]} for ${message.author}`
-      );
+      let ping: AlertPing;
+      console.log(args);
+      if (args[2]) {
+        args[2] !== 'everyone' ? (ping = 'self') : (ping = 'everyone');
+      }
+      getCurrentStock(args[0]).then((currentPrice) => {
+        createAlertHelper(
+          args[0],
+          args[1],
+          currentPrice,
+          `<@${message.author.id}>`,
+          ping
+        );
+
+        const messagePing = ping === 'self' ? message.author : '@everyone';
+        message.channel.send(
+          `Created a new alert for ${args[0]} if it reaches $${args[1]} for ${messagePing}`
+        );
+      });
     },
   };
   return createAlert;

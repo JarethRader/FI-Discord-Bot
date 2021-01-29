@@ -19,7 +19,10 @@ const getNews = buildGetNews(
   utilityFunctions.getNewsHelper,
   envConfig['POLYGON_API_KEY']
 );
-const createAlert = buildCreateAlert(utilityFunctions.createAlertHelper);
+const createAlert = buildCreateAlert(
+  utilityFunctions.createAlertHelper,
+  utilityFunctions.getCurrentPriceHelper
+);
 const deleteAlert = buildDeleteAlert(utilityFunctions.deleteAlertHelper);
 
 const commands = Object.freeze({

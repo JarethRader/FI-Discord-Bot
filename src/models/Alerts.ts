@@ -1,12 +1,14 @@
-import Discord from 'discord.js';
-import { DiscordAPIError } from 'discord.js';
 import { Document, Schema, Model, model } from 'mongoose';
 
 declare global {
+  type AlertPing = 'self' | 'everyone';
+
   interface IAlert {
     ticker: string;
     price: number;
+    currentPrice: number;
     author: string;
+    ping: AlertPing;
   }
 
   interface IAlertModel extends IAlert, Document {}
@@ -22,9 +24,18 @@ export const AlertSchema: Schema = new Schema({
     type: Number,
     required: true,
   },
+  currentPrice: {
+    type: Number,
+    required: true,
+  },
   author: {
     type: String,
     required: true,
+  },
+  ping: {
+    type: String,
+    enum: ['everyone', 'self'],
+    default: 'everyone',
   },
   createdAt: {
     type: Date,
