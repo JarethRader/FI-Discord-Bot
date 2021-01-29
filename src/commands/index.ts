@@ -4,6 +4,7 @@ import buildGetStock from './getCurrentStock';
 import buildGetCrypto from './getCurrentCrypto';
 import buildGetNews from './getNews';
 import buildCreateAlert from './createAlert';
+import buildDeleteAlert from './deleteAlert';
 import buildPing from './ping';
 
 import utilityFunctions from '../utils';
@@ -19,6 +20,7 @@ const getNews = buildGetNews(
   envConfig['POLYGON_API_KEY']
 );
 const createAlert = buildCreateAlert(utilityFunctions.createAlertHelper);
+const deleteAlert = buildDeleteAlert(utilityFunctions.deleteAlertHelper);
 
 const commands = Object.freeze({
   help,
@@ -27,8 +29,17 @@ const commands = Object.freeze({
   getCurrentCrypto,
   getNews,
   createAlert,
+  deleteAlert,
   ping,
 });
 
 export default commands;
-export { help, getCurrentStock, getCurrentCrypto, getNews, createAlert, ping };
+export {
+  help,
+  getCurrentStock,
+  getCurrentCrypto,
+  getNews,
+  createAlert,
+  deleteAlert,
+  ping,
+};

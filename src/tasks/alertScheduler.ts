@@ -7,6 +7,7 @@ import Alert from '../models/Alerts';
 
 const checkAlerts = (
   getStockPrice: (ticker: string) => Promise<any>,
+  deleteAlert: (alertID: string) => Promise<any>,
   client: Discord.Client
 ) => {
   var j = schedule.scheduleJob('0 * * * * *', async () => {
@@ -23,8 +24,17 @@ const checkAlerts = (
               channel.send(
                 `ALERT ${cursor.author}: ${cursor.ticker} has reached ${cursor.price}. This alert will now be deleted, if you wish to be alerted again, please create a new alert.`
               );
+              deleteAlert(cursor._id)
+                .then((success) => {
+                  // @ts-ignore
+                  success && channel.send('Alert successfully deleted');
+                })
+                .catch((err) => {
+                  // @ts-ignore
+                  channel.send('Error: Unable to delete alert');
+                  console.log(err);
+                });
             });
-          Alert.findByIdAndRemove(cursor._id);
         }
       });
     }

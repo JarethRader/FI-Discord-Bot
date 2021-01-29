@@ -45,7 +45,11 @@ Object.entries(commands).map((command) => {
 });
 
 // check for and send out alerts
-checkAlerts(utilityFunctions.getCurrentPriceHelper, client);
+checkAlerts(
+  utilityFunctions.getCurrentPriceHelper,
+  utilityFunctions.deleteAlertHelper,
+  client
+);
 
 client.on('message', (message: Discord.Message) => {
   if (!message.content.startsWith(config.prefix) || message.author.bot) return;
