@@ -7,6 +7,7 @@ import buildCreateAlert from './createAlert';
 import buildDeleteAlert from './deleteAlert';
 import buildListAlerts from './listAlerts';
 import buildGet52WeekAvg from './get52WeekAvg';
+import buildGetStockSummary from './getStockSummary';
 
 import buildPing from './ping';
 
@@ -29,6 +30,11 @@ const createAlert = buildCreateAlert(
 const deleteAlert = buildDeleteAlert(utilityFunctions.deleteAlertHelper);
 const listAlerts = buildListAlerts(utilityFunctions.listAlertsHelper);
 const get52WeekAvg = buildGet52WeekAvg(utilityFunctions.get52WeekAveHelper);
+const getStockSummary = buildGetStockSummary(
+  utilityFunctions.get52WeekRangeHelper,
+  utilityFunctions.getDailyOpenCloseHelper,
+  envConfig['POLYGON_API_KEY']
+);
 
 const commands = Object.freeze({
   help,
@@ -40,6 +46,7 @@ const commands = Object.freeze({
   deleteAlert,
   listAlerts,
   get52WeekAvg,
+  getStockSummary,
   ping,
 });
 
@@ -53,5 +60,6 @@ export {
   deleteAlert,
   listAlerts,
   get52WeekAvg,
+  getStockSummary,
   ping,
 };
