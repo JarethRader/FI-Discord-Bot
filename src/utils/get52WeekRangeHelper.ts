@@ -15,7 +15,7 @@ const get52WeekRangeHelper = (ticker: string) => {
         const yearlyLow = Math.min(
           ...json.chart.result[0].indicators.quote[0].low
         );
-        const yearlyHigh = Math.min(
+        const yearlyHigh = Math.max(
           ...json.chart.result[0].indicators.quote[0].high
         );
         const yearlyRange = `$${yearlyLow
