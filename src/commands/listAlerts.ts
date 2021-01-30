@@ -10,7 +10,11 @@ const buildListAlerts = (listAlertsHelper: () => Promise<any>) => {
         .then((response) => {
           response.map((alert: any) => {
             message.channel.send(
-              `ID: ${alert.id} - Alert for ${alert.ticker} at price $${alert.price}, created by ${alert.author}`
+              `ID: ${
+                alert.id
+              } - Alert for ${alert.ticker.toUpperCase()} at price $${
+                alert.price
+              }, created by ${alert.author}`
             );
           });
         })

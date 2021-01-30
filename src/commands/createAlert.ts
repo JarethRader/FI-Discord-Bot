@@ -33,7 +33,9 @@ const buildCreateAlert = (
 
         const messagePing = ping === 'self' ? message.author : '@everyone';
         message.channel.send(
-          `Created a new alert for ${args[0]} if it reaches $${args[1]} for ${messagePing}`
+          `Created a new alert for ${args[0].toUpperCase()} if it reaches $${
+            args[1]
+          } for ${messagePing}`
         );
       });
     },

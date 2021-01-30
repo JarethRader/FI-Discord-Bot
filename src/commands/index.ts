@@ -6,6 +6,8 @@ import buildGetNews from './getNews';
 import buildCreateAlert from './createAlert';
 import buildDeleteAlert from './deleteAlert';
 import buildListAlerts from './listAlerts';
+import buildGet52WeekAvg from './get52WeekAvg';
+
 import buildPing from './ping';
 
 import utilityFunctions from '../utils';
@@ -26,6 +28,7 @@ const createAlert = buildCreateAlert(
 );
 const deleteAlert = buildDeleteAlert(utilityFunctions.deleteAlertHelper);
 const listAlerts = buildListAlerts(utilityFunctions.listAlertsHelper);
+const get52WeekAvg = buildGet52WeekAvg(utilityFunctions.get52WeekAveHelper);
 
 const commands = Object.freeze({
   help,
@@ -36,6 +39,7 @@ const commands = Object.freeze({
   createAlert,
   deleteAlert,
   listAlerts,
+  get52WeekAvg,
   ping,
 });
 
@@ -48,5 +52,6 @@ export {
   createAlert,
   deleteAlert,
   listAlerts,
+  get52WeekAvg,
   ping,
 };
