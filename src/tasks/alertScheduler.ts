@@ -18,8 +18,7 @@ const checkAlerts = (
           response[0] / cursor.price < 1.05
         ) {
           await client.channels
-            // .fetch(envConfig['ALERT_CHANNEL_ID'])
-            .fetch('804528418821636116')
+            .fetch(envConfig['ALERT_CHANNEL_ID'])
             .then((channel) => {
               console.log(cursor.ping);
               const messagePing =
