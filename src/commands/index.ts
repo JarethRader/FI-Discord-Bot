@@ -1,10 +1,11 @@
 import help from './help';
-import buildAddWatch from './addWatch';
+// import buildAddWatch from './addWatch';
 import buildGetStock from './getCurrentStock';
 import buildGetCrypto from './getCurrentCrypto';
 import buildGetNews from './getNews';
 import buildCreateAlert from './createAlert';
 import buildDeleteAlert from './deleteAlert';
+import buildListAlerts from './listAlerts';
 import buildPing from './ping';
 
 import utilityFunctions from '../utils';
@@ -24,6 +25,7 @@ const createAlert = buildCreateAlert(
   utilityFunctions.getCurrentPriceHelper
 );
 const deleteAlert = buildDeleteAlert(utilityFunctions.deleteAlertHelper);
+const listAlerts = buildListAlerts(utilityFunctions.listAlertsHelper);
 
 const commands = Object.freeze({
   help,
@@ -33,6 +35,7 @@ const commands = Object.freeze({
   getNews,
   createAlert,
   deleteAlert,
+  listAlerts,
   ping,
 });
 
@@ -44,5 +47,6 @@ export {
   getNews,
   createAlert,
   deleteAlert,
+  listAlerts,
   ping,
 };

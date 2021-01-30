@@ -3,6 +3,7 @@ import getCurrentCryptoHelper from './getCurrentCryptoHelper';
 import getNewsHelper from './getNewsHelper';
 import createAlertHelper from './createAlertHelper';
 import deleteAlertHelper from './deleteAlertHelper';
+import listAlertsHelper from './listAlertsHelper';
 
 const utilityFunctions = Object.freeze({
   getCurrentPriceHelper,
@@ -10,6 +11,7 @@ const utilityFunctions = Object.freeze({
   getNewsHelper,
   createAlertHelper,
   deleteAlertHelper,
+  listAlertsHelper,
 });
 
 export default utilityFunctions;
@@ -19,4 +21,5 @@ export {
   getCurrentCryptoHelper,
   createAlertHelper,
   deleteAlertHelper,
+  listAlertsHelper,
 };

@@ -13,13 +13,12 @@ const buildCreateAlert = (
   const createAlert = {
     name: 'create-alert',
     description:
-      'Create a new alert for if a stock reachs a certain price. Optionally can choose to only alert youself, alerts will metion @everyone by default if this option is not given. Alerts only currently work for traditional stocks.',
+      'Create a new alert for if a stock reachs a certain price. Optionally can choose to only alert yourself, alerts will mention @everyone by default if this option is not given. Alerts only currently work for traditional stocks.',
     args: true,
-    usage: '<stock symbol> <price> <me | everyone (optional)>',
+    usage: '<stock symbol> <price> <me | everyone>(optional)',
     cooldown: '15',
     execute: (message: Discord.Message, args: string[]) => {
       let ping: AlertPing;
-      console.log(args);
       if (args[2]) {
         args[2] !== 'everyone' ? (ping = 'self') : (ping = 'everyone');
       }
