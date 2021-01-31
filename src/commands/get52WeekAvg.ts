@@ -13,7 +13,9 @@ const buildGet52WeekAvg = (
       get52WeekAvgHelper(args[0])
         .then((response) => {
           message.channel.send(
-            `The 52 week average for ${args[0].toUpperCase()} is ${response}`
+            `The 52 week average for ${args[0].toUpperCase()} is $${response.toFixed(
+              2
+            )}`
           );
         })
         .catch((err) => {
