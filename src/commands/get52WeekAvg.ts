@@ -10,17 +10,24 @@ const buildGet52WeekAvg = (
     usage: '<stock symbol>',
     cooldown: '12',
     execute: (message: Discord.Message, args: string[]) => {
-      get52WeekAvgHelper(args[0])
-        .then((response) => {
-          message.channel.send(
-            `The 52 week average for ${args[0].toUpperCase()} is $${response.toFixed(
-              2
-            )}`
-          );
-        })
-        .catch((err) => {
-          message.channel.send(`An error has occured: ${err}`);
-        });
+      try {
+        if (args.length !== 1) {
+          throw new Error(`Expected 1 argument, ${args.length} provided`);
+        }
+        get52WeekAvgHelper(args[0])
+          .then((response) => {
+            message.channel.send(
+              `The 52 week average for ${args[0].toUpperCase()} is $${response.toFixed(
+                2
+              )}`
+            );
+          })
+          .catch((err) => {
+            message.channel.send(`An error has occured: ${err}`);
+          });
+      } catch (err) {
+        message.channel.send(`An error has occured: ${err}`);
+      }
     },
   };
   return get52WeekAvg;

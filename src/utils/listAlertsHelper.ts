@@ -18,7 +18,7 @@ const listAlertsHelper = () => {
           id: cursor._id,
           ticker: cursor.ticker,
           author: cursor.author,
-          price: cursor.price,
+          price: cursor.price.toFixed(2),
         };
         list.push(newAlert);
       }

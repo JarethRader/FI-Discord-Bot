@@ -8,17 +8,24 @@ const buildGetCrypto = (getCurrentCrypto: (ticker: string) => Promise<any>) => {
     usage: '<stock symbol>',
     cooldown: '5',
     execute: (message: Discord.Message, args: string[]) => {
-      getCurrentCrypto(args[0])
-        .then((response) => {
-          message.channel.send(
-            `The most recent trading price of ${args[0].toUpperCase()} on Coinbase is ${
-              response[0]
-            } in ${response[1]}`
-          );
-        })
-        .catch((err) => {
-          message.channel.send(`An error has occured: ${err}`);
-        });
+      try {
+        if (args.length !== 1) {
+          throw new Error(`Expected 1 argument, ${args.length} provided`);
+        }
+        getCurrentCrypto(args[0])
+          .then((response) => {
+            message.channel.send(
+              `The most recent trading price of ${args[0].toUpperCase()} on Coinbase is ${
+                response[0]
+              } in ${response[1]}`
+            );
+          })
+          .catch((err) => {
+            message.channel.send(`An error has occured: ${err}`);
+          });
+      } catch (err) {
+        message.channel.send(`An error has occured: ${err}`);
+      }
     },
   };
   return getCurrent;

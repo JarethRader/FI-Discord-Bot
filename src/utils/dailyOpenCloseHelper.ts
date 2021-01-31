@@ -10,6 +10,14 @@ declare global {
     afterHours: string;
     preMarket: string;
   }
+
+  interface ISummaryError {
+    status: string;
+    request_id: string;
+    message: string;
+  }
+
+  type SummaryType = ISummary | ISummaryError;
 }
 
 const getDailyOpenCloseHelper = (
@@ -18,6 +26,9 @@ const getDailyOpenCloseHelper = (
   date: string
 ) => {
   return new Promise<ISummary>(async (resolve, reject) => {
+    console.log(
+      `https://api.polygon.io/v1/open-close/${ticker.toUpperCase()}/${date}?unadjusted=true&apiKey=${apiKey}`
+    );
     await fetch(
       `https://api.polygon.io/v1/open-close/${ticker.toUpperCase()}/${date}?unadjusted=true&apiKey=${apiKey}`
     )
@@ -25,6 +36,10 @@ const getDailyOpenCloseHelper = (
         return response.json();
       })
       .then((json) => {
+        if (json.status === 'NOT_FOUND') {
+          resolve(json);
+        }
+
         const summary: ISummary = {
           open: json.open.toFixed(2),
           high: json.high.toFixed(2),

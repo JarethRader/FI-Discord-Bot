@@ -12,6 +12,9 @@ const buildGetNews = (
     cooldown: '5',
     execute: (message: Discord.Message, args: string[]) => {
       try {
+        if (args.length !== 1) {
+          throw new Error(`Expected 1 argument, ${args.length} provided`);
+        }
         getNewsHelper(args[0], apiKey)
           .then((response) => {
             message.channel.send(
