@@ -8,6 +8,7 @@ import buildDeleteAlert from './deleteAlert';
 import buildListAlerts from './listAlerts';
 import buildGet52WeekAvg from './get52WeekAvg';
 import buildGetStockSummary from './getStockSummary';
+import buildGetFundamentalData from './getFundamentalData';
 
 import buildPing from './ping';
 
@@ -35,6 +36,9 @@ const getStockSummary = buildGetStockSummary(
   utilityFunctions.getDailyOpenCloseHelper,
   envConfig['POLYGON_API_KEY']
 );
+const getFundamentalData = buildGetFundamentalData(
+  utilityFunctions.getFundamentalsHelper
+);
 
 const commands = Object.freeze({
   help,
@@ -47,6 +51,7 @@ const commands = Object.freeze({
   listAlerts,
   get52WeekAvg,
   getStockSummary,
+  getFundamentalData,
   ping,
 });
 
@@ -61,5 +66,6 @@ export {
   listAlerts,
   get52WeekAvg,
   getStockSummary,
+  getFundamentalData,
   ping,
 };

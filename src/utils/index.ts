@@ -7,6 +7,7 @@ import listAlertsHelper from './listAlertsHelper';
 import get52WeekAveHelper from './52WeekAverageHelper';
 import get52WeekRangeHelper from './get52WeekRangeHelper';
 import getDailyOpenCloseHelper from './dailyOpenCloseHelper';
+import getFundamentalsHelper from './getFundamentalsHelper';
 
 const utilityFunctions = Object.freeze({
   getCurrentPriceHelper,
@@ -18,6 +19,7 @@ const utilityFunctions = Object.freeze({
   get52WeekAveHelper,
   get52WeekRangeHelper,
   getDailyOpenCloseHelper,
+  getFundamentalsHelper,
 });
 
 export default utilityFunctions;
@@ -31,4 +33,5 @@ export {
   get52WeekAveHelper,
   get52WeekRangeHelper,
   getDailyOpenCloseHelper,
+  getFundamentalsHelper,
 };

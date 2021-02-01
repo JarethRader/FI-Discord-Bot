@@ -17,7 +17,7 @@ const buildGetCurrent = (getCurrentStock: (ticker: string) => Promise<any>) => {
             message.channel.send(
               `The most recent trading price of ${args[0].toUpperCase()} on the ${
                 response[2]
-              } is ${response[0]} in ${response[1]}`
+              } is $${response[0]} in ${response[1]}`
             );
           })
           .catch((err) => {
